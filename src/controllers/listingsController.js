@@ -1,4 +1,4 @@
-import { getListings, getListingById } from "../services/listingsService.js";
+import { getListings, getListingById, getListingByType } from "../services/listingsService.js";
 
 export const getAllListings = async (req, res) => {
     try {
@@ -24,3 +24,14 @@ export const getListingId = async (req, res) => {
     }
 };
 
+export const getListingType = async (req, res) => {
+    try {
+        const property_type = req.params.property_type;
+        console.log(property_type);
+        const listing = await getListingByType(property_type);
+        res.json(listing);
+    } catch (error) {
+        console.log("Error fetching listing: ", error);
+        res.status(500).json({ message: "Internal server error" });
+    }
+};

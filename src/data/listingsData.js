@@ -11,7 +11,7 @@ export async function findAllListings(page, pageSize) {
             .toArray();
         return listings;
     } else {
-        // Sin paginación: trae todos los documentos
+        
         const listings = await db.collection("listingsAndReviews").find().toArray();
         return listings;
     }
@@ -23,3 +23,16 @@ export async function findListingById(id) {
     console.log(listing);
     return listing;
 }
+
+export async function findListingsByType(property_type) {
+    const db = getDb();
+    const filter = property_type ? { property_types: property_type } : {};
+    const listings = await db.collection("listingsAndReviews")
+        .find(filter)
+        .toArray();
+    return listings;
+}
+
+//export async function findListingsWithPrice(params){
+
+//}
