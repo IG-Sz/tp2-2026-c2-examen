@@ -47,5 +47,5 @@ export async function registerUser({ username, email, password }) {
         password: hashedPassword
     };
     const result = await db.collection("users").insertOne(newUser);
-    return result;
+    return result; 
 }
