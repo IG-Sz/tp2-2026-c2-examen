@@ -64,6 +64,9 @@ Si ya terminaste o son las 10:00 asegurate de seguir los siguientes pasos para l
 ### Endpoints de listings/propiedades:
 - GET /api/listings?pageSize=[pageSize]&page=[page] - Obtener todas las propiedades con paginación opcional (requiere autenticación)
 - GET /api/listings/:id - Obtener una propiedad específica por ID (requiere autenticación)
+- GET /api/listings/property-type/:type - Obtener todas las propiedades de un tipo (requiere autenticación)
+- GET /api/listings/with-total-price - Obtener todas las propiedades junto con su precio total (precio + gastos) (requiere autenticación)
+- GET /api/host/:host_id - Obtener todas las propiedades de un Host particular (requiere autenticación)
 
 ### Endpoint base:
 - GET / - Mensaje de bienvenida de la API

@@ -33,6 +33,19 @@ export async function findListingsByType(property_type) {
     return listings;
 }
 
-//export async function findListingsWithPrice(params){
+export async function findListingsWithPrice(){
+    const db = getDb();
+    const listings = await db.collection("listingsAndReviews")
+        .find()
+        .toArray();
+    return listings;
+}
 
-//}
+export async function findListingsByHost(host_id){
+    const db = getDb();
+    const filter = host_id ? { todos_host_id: host_id } : {};
+    const listings = await db.collection("listingsAndReviews")
+        .find(filter)
+        .toArray();
+    return listings;
+}

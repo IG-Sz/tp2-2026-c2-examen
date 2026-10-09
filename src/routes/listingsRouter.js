@@ -1,11 +1,12 @@
 import express from "express";
-import { getAllListings, getListingId, getListingType } from "../controllers/listingsController.js";
+import { getAllListings, getListingId, getListingsType, getListingsPrice, getListingsHost } from "../controllers/listingsController.js";
 import { authMiddleware } from "../middleware/authMiddleware.js";
 
 const router = express.Router();
-router.get("/", authMiddleware, getAllListings);
+router.get("/", getAllListings);
+router.get("/property-type/:type", authMiddleware, getListingsType);
+router.get("/with-total-price", authMiddleware, getListingsPrice);
+router.get("/host/:host_id", authMiddleware, getListingsHost);
 router.get("/:id", authMiddleware, getListingId);
-router.get("/property-type/:type", authMiddleware, getListingType);
-
 
 export default router;

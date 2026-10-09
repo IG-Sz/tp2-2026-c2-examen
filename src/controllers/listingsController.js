@@ -1,4 +1,4 @@
-import { getListings, getListingById, getListingByType } from "../services/listingsService.js";
+import { getListings, getListingById, getListingsByType, getListingsWithPrice, getListingsByHost } from "../services/listingsService.js";
 
 export const getAllListings = async (req, res) => {
     try {
@@ -24,12 +24,34 @@ export const getListingId = async (req, res) => {
     }
 };
 
-export const getListingType = async (req, res) => {
+export const getListingsType = async (req, res) => {
     try {
         const property_type = req.params.property_type;
         console.log(property_type);
-        const listing = await getListingByType(property_type);
-        res.json(listing);
+        const listings = await getListingsByType(property_type);
+        res.json(listings);
+    } catch (error) {
+        console.log("Error fetching listing: ", error);
+        res.status(500).json({ message: "Internal server error" });
+    }
+};
+
+export const getListingsPrice= async (req, res) => {
+    try {
+        const listings = await getListingsWithPrice();
+        res.json(listings);
+    } catch (error) {
+        console.log("Error fetching listing: ", error);
+        res.status(500).json({ message: "Internal server error" });
+    }
+};
+
+export const getListingsHost= async (req, res) => {
+    try {
+        const host_id = req.params.host_id;
+        console.log(host_id);
+        const listings = await getListingsByHost(host_id);
+        res.json(listings);
     } catch (error) {
         console.log("Error fetching listing: ", error);
         res.status(500).json({ message: "Internal server error" });
